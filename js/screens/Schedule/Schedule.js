@@ -64,22 +64,19 @@ class Schedule extends Component {
                       })
                     }
                   >
-                    <Text>{item.title}</Text>
+                    <View>
+                      <Text style={styles.title}>{item.title}</Text>
+                      <Text style={styles.location}>{item.location}</Text>
+                    </View>
                   </TouchableHighlight>
-                  <Text style={styles.location}>{item.location}</Text>
                 </View>
               )}
               renderSectionHeader={({ section: { title } }) => (
-                <Text
-                  style={{
-                    fontWeight: 'bold',
-                    backgroundColor: colourStyles.mediumgray,
-                    marginBottom: 10
-                  }}
-                >
+                <Text style={styles.sectionHeader}>
                   {Moment(title).format('h:mm A')}
                 </Text>
               )}
+              ItemSeparatorComponent={() => <View style={styles.seperator} />}
               sections={sortedData}
               keyExtractor={(item, index) => item + index}
             />

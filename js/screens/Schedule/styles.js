@@ -6,7 +6,25 @@ const styles = StyleSheet.create({
     color: colourStyles.mediumgray
   },
   singleEvent: {
-    paddingBottom: 10
+    paddingBottom: 10,
+    paddingTop: 10,
+    marginLeft: 10,
+    marginRight: 10
+  },
+  title: {
+    fontWeight: 'bold'
+  },
+  seperator: {
+    width: '100%',
+    height: 1,
+    backgroundColor: colourStyles.mediumgray
+  },
+  sectionHeader: {
+    fontWeight: 'bold',
+    backgroundColor: colourStyles.mediumgray,
+    paddingLeft: 10,
+    paddingTop: 5,
+    paddingBottom: 5
   }
 });
 
