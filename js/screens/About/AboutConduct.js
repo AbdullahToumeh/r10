@@ -27,7 +27,7 @@ const AboutConduct = () => {
 
           return data.allConducts.map(({ description, title }, index) => (
             <View style={styles.singleConduct} key={index}>
-              <Text style={styles.conductTitle}>{title}</Text>
+              <Text style={styles.conductTitle}>+ {title}</Text>
               <Text>{description}</Text>
             </View>
           ));

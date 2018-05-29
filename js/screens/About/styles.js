@@ -9,12 +9,19 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   header: {
-    fontSize: 30,
-    fontWeight: 'bold'
+    fontSize: 27,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'left',
+    width: '90%'
   },
   conductTitle: {
     color: colourStyles.purple,
     marginBottom: 10
+  },
+  content: {
+    width: '90%',
+    marginBottom: 20
   },
   imageHeader: {
     paddingBottom: 20,
@@ -25,7 +32,9 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   conductContent: {
-    margin: 10
+    width: '90%',
+    borderBottomColor: colourStyles.lightgray,
+    borderBottomWidth: 1
   },
   singleConduct: {
     marginBottom: 20

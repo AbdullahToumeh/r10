@@ -5,6 +5,7 @@ import { Text, ScrollView, Image, View } from 'react-native';
 import styles from './styles';
 
 import AboutConduct from './AboutConduct';
+import Footer from '../../components/Footer';
 
 class AboutContainer extends Component {
   render() {
@@ -13,17 +14,18 @@ class AboutContainer extends Component {
         <View style={styles.imageHeader}>
           <Image source={require('../../assets/r10_logo.png')} />
         </View>
-        <Text>
+        <Text style={styles.content}>
           R10 is a conference that focuses on just about any topic related to
           dev.
         </Text>
         <Text style={styles.header}>Date & Venue</Text>
-        <Text>
+        <Text style={styles.content}>
           The R10 conference will take place on Tuesday, June 27, 2017 in
           Vancouver, BC
         </Text>
         <Text style={styles.header}>Code of Conduct</Text>
         <AboutConduct />
+        <Footer />
       </ScrollView>
     );
   }
