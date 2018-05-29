@@ -2,7 +2,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import LoadingWheel from '../../components/LoadingWheel';
 import React, { Component } from 'react';
-import { Text, SectionList, View } from 'react-native';
+import { Text, SectionList, View, TouchableHighlight } from 'react-native';
 import Moment from 'moment';
 
 import colourStyles from '../../config/styles';
@@ -52,7 +52,16 @@ class Schedule extends Component {
             <SectionList
               renderItem={({ item, index, section }) => (
                 <View key={index} style={styles.singleEvent}>
-                  <Text>{item.title}</Text>
+                  <TouchableHighlight
+                    onPress={() =>
+                      this.props.nav.navigate('Session', {
+                        title: item.title,
+                        description: item.description
+                      })
+                    }
+                  >
+                    <Text>{item.title}</Text>
+                  </TouchableHighlight>
                   <Text style={styles.location}>{item.location}</Text>
                 </View>
               )}

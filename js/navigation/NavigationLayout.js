@@ -8,6 +8,7 @@ import React from 'react';
 import AboutContainer from '../screens/About';
 import ScheduleScreen from '../screens/Schedule';
 import FavesScreen from '../screens/Faves';
+import SessionScreen from '../screens/Session';
 
 import colourStyles from '../config/styles';
 import { sharedNavigationOptions } from './config';
@@ -18,18 +19,21 @@ const aboutStack = createStackNavigator(
   },
   {
     navigationOptions: ({ navigation }) => ({
-      ...sharedNavigationOptions(navigation)
+      ...sharedNavigationOptions(navigation),
+      title: 'About'
     })
   }
 );
 
 const homeStack = createStackNavigator(
   {
-    Schedule: ScheduleScreen
+    Schedule: ScheduleScreen,
+    Session: SessionScreen
   },
   {
     navigationOptions: ({ navigation }) => ({
-      ...sharedNavigationOptions(navigation)
+      ...sharedNavigationOptions(navigation),
+      title: 'Schedule'
     })
   }
 );
@@ -40,7 +44,8 @@ const faveStack = createStackNavigator(
   },
   {
     navigationOptions: ({ navigation }) => ({
-      ...sharedNavigationOptions(navigation)
+      ...sharedNavigationOptions(navigation),
+      title: 'Faves'
     })
   }
 );

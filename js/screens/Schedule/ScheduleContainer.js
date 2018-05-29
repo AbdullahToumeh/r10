@@ -6,7 +6,7 @@ class ScheduleContainer extends Component {
   render() {
     return (
       <View>
-        <Schedule />
+        <Schedule nav={this.props.navigation} />
       </View>
     );
   }
