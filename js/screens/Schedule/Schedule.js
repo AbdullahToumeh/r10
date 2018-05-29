@@ -47,6 +47,7 @@ class Schedule extends Component {
           if (error) return <Text>Error :(</Text>;
 
           const sortedData = this.formatSessionData(data.allSessions);
+          console.log(sortedData);
 
           return (
             <SectionList
@@ -56,7 +57,10 @@ class Schedule extends Component {
                     onPress={() =>
                       this.props.nav.navigate('Session', {
                         title: item.title,
-                        description: item.description
+                        description: item.description,
+                        time: item.startTime,
+                        location: item.location,
+                        speaker: item.speaker
                       })
                     }
                   >
