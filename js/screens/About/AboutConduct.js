@@ -27,7 +27,11 @@ class AboutConduct extends Component {
   }
 
   showContent(index) {
-    this.setState({ isVisible: !this.state.isVisible, currentIndex: index });
+    if (index === this.state.currentIndex) {
+      this.setState({ isVisible: !this.state.isVisible, currentIndex: index });
+    } else {
+      this.setState({ isVisible: true, currentIndex: index });
+    }
   }
 
   render() {
