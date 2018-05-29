@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   footer: {
     textAlign: 'left',
     width: '90%',
-    marginBottom: 40,
+    marginBottom: 100,
     marginTop: 20
   }
 });

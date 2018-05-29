@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   imageHeader: {
     paddingBottom: 20,
-    margin: 20,
+    marginBottom: 20,
     borderBottomColor: colourStyles.lightgray,
     borderBottomWidth: 1,
     width: '90%',
