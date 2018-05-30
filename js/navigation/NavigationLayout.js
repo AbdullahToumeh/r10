@@ -10,6 +10,7 @@ import ScheduleScreen from '../screens/Schedule';
 import FavesScreen from '../screens/Faves';
 import SessionScreen from '../screens/Session';
 import SpeakerScreen from '../screens/Speaker';
+import MapScreen from '../screens/Map';
 
 import colourStyles from '../config/styles';
 import { sharedNavigationOptions } from './config';
@@ -35,6 +36,18 @@ const homeStack = createStackNavigator(
     navigationOptions: ({ navigation }) => ({
       ...sharedNavigationOptions(navigation),
       title: 'Schedule'
+    })
+  }
+);
+
+const mapStack = createStackNavigator(
+  {
+    Map: MapScreen
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      ...sharedNavigationOptions(navigation),
+      title: 'Map'
     })
   }
 );
@@ -73,7 +86,8 @@ export default createBottomTabNavigator(
   {
     About: aboutStack,
     Schedule: homeStack,
-    Faves: faveStack
+    Faves: faveStack,
+    Map: mapStack
   },
   {
     tabBarOptions: {
@@ -97,6 +111,8 @@ export default createBottomTabNavigator(
           iconName = `ios-information-circle${focused ? '' : '-outline'}`;
         } else if (routeName === 'Faves') {
           iconName = `ios-heart${focused ? '' : '-outline'}`;
+        } else if (routeName === 'Map') {
+          iconName = `ios-map${focused ? '' : '-outline'}`;
         }
 
         // You can return any component that you like here! We usually use an
