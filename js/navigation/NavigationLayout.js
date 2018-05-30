@@ -39,9 +39,22 @@ const homeStack = createStackNavigator(
   }
 );
 
-export const speakerScreen = createStackNavigator({
-  Speaker: SpeakerScreen
-});
+export const speakerScreen = createStackNavigator(
+  {
+    Speaker: SpeakerScreen
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: 'black'
+      },
+      headerTitleStyle: {
+        color: 'white'
+      },
+      title: 'About the Speaker'
+    })
+  }
+);
 
 const faveStack = createStackNavigator(
   {

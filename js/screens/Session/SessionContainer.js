@@ -21,7 +21,16 @@ class SessionContainer extends Component {
         <Text style={styles.time}>{Moment(time).format('h:mm A')}</Text>
         <Text style={styles.description}>{description}</Text>
         <Text style={styles.location}>Presented by:</Text>
-        <TouchableOpacity onPress={() => this.props.navigation.push('Speaker')}>
+        <TouchableOpacity
+          onPress={() =>
+            this.props.navigation.push('Speaker', {
+              name: speaker.name,
+              image: speaker.image,
+              bio: speaker.bio,
+              url: speaker.url
+            })
+          }
+        >
           <View>
             {speaker && (
               <Image source={{ uri: speaker.image }} style={styles.image} />
