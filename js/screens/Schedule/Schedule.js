@@ -2,7 +2,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import LoadingWheel from '../../components/LoadingWheel';
 import React, { Component } from 'react';
-import { Text, SectionList, View, TouchableHighlight } from 'react-native';
+import { Text, SectionList, View, TouchableOpacity } from 'react-native';
 import Moment from 'moment';
 
 import colourStyles from '../../config/styles';
@@ -17,8 +17,11 @@ const sessionQuery = gql`
       location
       startTime
       speaker {
+        id
         bio
+        url
         name
+        image
       }
     }
   }
@@ -53,7 +56,7 @@ class Schedule extends Component {
             <SectionList
               renderItem={({ item, index, section }) => (
                 <View key={index} style={styles.singleEvent}>
-                  <TouchableHighlight
+                  <TouchableOpacity
                     onPress={() =>
                       this.props.nav.navigate('Session', {
                         title: item.title,
@@ -68,7 +71,7 @@ class Schedule extends Component {
                       <Text style={styles.title}>{item.title}</Text>
                       <Text style={styles.location}>{item.location}</Text>
                     </View>
-                  </TouchableHighlight>
+                  </TouchableOpacity>
                 </View>
               )}
               renderSectionHeader={({ section: { title } }) => (

@@ -3,7 +3,8 @@ import colourStyles from '../../config/styles';
 
 const styles = StyleSheet.create({
   location: {
-    color: colourStyles.mediumgray
+    color: colourStyles.mediumgray,
+    fontFamily: 'Montserrat'
   },
   singleEvent: {
     paddingBottom: 10,
@@ -12,7 +13,9 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   title: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    marginBottom: 5,
+    fontFamily: 'Montserrat'
   },
   seperator: {
     width: '100%',
@@ -24,7 +27,8 @@ const styles = StyleSheet.create({
     backgroundColor: colourStyles.mediumgray,
     paddingLeft: 10,
     paddingTop: 5,
-    paddingBottom: 5
+    paddingBottom: 5,
+    fontFamily: 'Montserrat'
   }
 });
 

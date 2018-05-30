@@ -9,6 +9,7 @@ import AboutContainer from '../screens/About';
 import ScheduleScreen from '../screens/Schedule';
 import FavesScreen from '../screens/Faves';
 import SessionScreen from '../screens/Session';
+import SpeakerScreen from '../screens/Speaker';
 
 import colourStyles from '../config/styles';
 import { sharedNavigationOptions } from './config';
@@ -37,6 +38,10 @@ const homeStack = createStackNavigator(
     })
   }
 );
+
+export const speakerScreen = createStackNavigator({
+  Speaker: SpeakerScreen
+});
 
 const faveStack = createStackNavigator(
   {

@@ -30,6 +30,11 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     fontSize: 15,
     marginBottom: 20
+  },
+  image: {
+    width: 50,
+    height: 50,
+    borderRadius: 25
   }
 });
 

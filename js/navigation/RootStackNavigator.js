@@ -1,11 +1,11 @@
 import { createStackNavigator } from 'react-navigation';
 
-import NavigationLayout from './NavigationLayout';
+import NavigationLayout, { speakerScreen } from './NavigationLayout';
 
 export default createStackNavigator(
   {
-    Layout: NavigationLayout
-    // Speaker: SpeakerModal
+    Layout: NavigationLayout,
+    Speaker: speakerScreen
   },
   {
     mode: 'modal',

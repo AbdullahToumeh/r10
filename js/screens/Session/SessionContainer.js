@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import Moment from 'moment';
 
@@ -14,15 +14,21 @@ class SessionContainer extends Component {
       location,
       speaker
     } = this.props.navigation.state.params;
-    console.log(speaker);
     return (
       <View style={styles.session}>
         <Text style={styles.location}>{location}</Text>
         <Text style={styles.event}>{title}</Text>
         <Text style={styles.time}>{Moment(time).format('h:mm A')}</Text>
         <Text style={styles.description}>{description}</Text>
-        <Text>Presented by:</Text>
-        <Text>{speaker && speaker.name}</Text>
+        <Text style={styles.location}>Presented by:</Text>
+        <TouchableOpacity onPress={() => this.props.navigation.push('Speaker')}>
+          <View>
+            {speaker && (
+              <Image source={{ uri: speaker.image }} style={styles.image} />
+            )}
+            <Text>{speaker && speaker.name}</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }

@@ -53,7 +53,7 @@ class AboutConduct extends Component {
                 {this.state.isVisible && this.state.currentIndex === index ? (
                   <Text id={'conduct' + index}>{description}</Text>
                 ) : (
-                  <Text />
+                  ''
                 )}
               </View>
             ));
