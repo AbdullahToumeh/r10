@@ -46,7 +46,8 @@ export const speakerScreen = createStackNavigator(
   {
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: 'black'
+        backgroundColor: 'black',
+        borderBottomColor: 'black'
       },
       headerTitleStyle: {
         color: 'white'

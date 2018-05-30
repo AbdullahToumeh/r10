@@ -34,7 +34,19 @@ const styles = StyleSheet.create({
   image: {
     width: 50,
     height: 50,
-    borderRadius: 25
+    borderRadius: 25,
+    marginRight: 10
+  },
+  speaker: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomColor: colourStyles.mediumgray,
+    borderBottomWidth: 1,
+    paddingBottom: 20
+  },
+  speakerName: {
+    fontWeight: 'bold',
+    fontFamily: 'Montserrat'
   }
 });
 

@@ -31,11 +31,11 @@ class SessionContainer extends Component {
             })
           }
         >
-          <View>
+          <View style={styles.speaker}>
             {speaker && (
               <Image source={{ uri: speaker.image }} style={styles.image} />
             )}
-            <Text>{speaker && speaker.name}</Text>
+            <Text style={styles.speakerName}>{speaker && speaker.name}</Text>
           </View>
         </TouchableOpacity>
       </View>
