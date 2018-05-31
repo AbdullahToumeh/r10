@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import Moment from 'moment';
+import { connect } from 'react-redux';
+import { createTheFave, deleteTheFave } from '../../redux/modules/faves';
 
 import styles from './styles';
 
@@ -12,7 +14,9 @@ class SessionContainer extends Component {
       title,
       time,
       location,
-      speaker
+      speaker,
+      id,
+      faves
     } = this.props.navigation.state.params;
     return (
       <View style={styles.session}>
@@ -38,9 +42,22 @@ class SessionContainer extends Component {
             <Text style={styles.speakerName}>{speaker && speaker.name}</Text>
           </View>
         </TouchableOpacity>
+        {faves.includes(id) ? (
+          <TouchableOpacity
+            onPress={() => this.props.dispatch(deleteTheFave(id))}
+          >
+            <Text>Remove from Faves</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            onPress={() => this.props.dispatch(createTheFave(id))}
+          >
+            <Text>Add to Faves</Text>
+          </TouchableOpacity>
+        )}
       </View>
     );
   }
 }
 
-export default withNavigation(SessionContainer);
+export default connect()(withNavigation(SessionContainer));

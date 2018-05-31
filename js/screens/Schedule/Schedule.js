@@ -2,6 +2,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import LoadingWheel from '../../components/LoadingWheel';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Text, SectionList, View, TouchableOpacity } from 'react-native';
 import Moment from 'moment';
 
@@ -43,6 +44,7 @@ class Schedule extends Component {
   };
 
   render() {
+    console.log(this.props.faves);
     return (
       <Query query={sessionQuery}>
         {({ loading, error, data }) => {
@@ -63,7 +65,9 @@ class Schedule extends Component {
                         description: item.description,
                         time: item.startTime,
                         location: item.location,
-                        speaker: item.speaker
+                        speaker: item.speaker,
+                        id: item.id,
+                        faves: this.props.faves
                       })
                     }
                   >
@@ -90,4 +94,6 @@ class Schedule extends Component {
   }
 }
 
-export default Schedule;
+export default connect(state => ({
+  faves: state.faveData.faves
+}))(Schedule);
