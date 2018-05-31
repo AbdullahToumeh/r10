@@ -1,6 +1,7 @@
 import {
   createStackNavigator,
-  createBottomTabNavigator
+  createBottomTabNavigator,
+  createDrawerNavigator
 } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React from 'react';

@@ -39,8 +39,8 @@ class AboutConduct extends Component {
       <View style={styles.conductContent}>
         <Query query={conductQuery}>
           {({ loading, error, data }) => {
-            if (loading) return <LoadingWheel />;
-            if (error) return <Text>Error :(</Text>;
+            if (loading) return <LoadingWheel />
+            if (error) return <Text>Error </Text>
 
             return data.allConducts.map(({ description, title }, index) => (
               <View style={styles.singleConduct} key={index}>
@@ -53,7 +53,7 @@ class AboutConduct extends Component {
                 {this.state.isVisible && this.state.currentIndex === index ? (
                   <Text id={'conduct' + index}>{description}</Text>
                 ) : (
-                  ''
+                  <Text></Text>
                 )}
               </View>
             ));

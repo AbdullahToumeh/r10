@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import colourStyles from '../../config/styles';
+import { StyleSheet, Platform } from 'react-native';
+import colourStyles, { fontStyles } from '../../config/styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,7 +13,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
     textAlign: 'left',
-    width: '90%'
+    width: '90%',
+    ...Platform.select({
+      android: {
+        fontFamily: fontStyles.android
+      },
+      ios: {
+        fontFamily: fontStyles.ios
+      }
+    })
   },
   conductTitle: {
     color: colourStyles.purple,
@@ -21,7 +29,15 @@ const styles = StyleSheet.create({
   },
   content: {
     width: '90%',
-    marginBottom: 20
+    marginBottom: 20,
+    ...Platform.select({
+      android: {
+        fontFamily: fontStyles.android
+      },
+      ios: {
+        fontFamily: fontStyles.ios
+      }
+    })
   },
   imageHeader: {
     paddingBottom: 20,

@@ -1,6 +1,7 @@
 import { createStackNavigator } from 'react-navigation';
 
-import NavigationLayout, { speakerScreen } from './NavigationLayout';
+import NavigationLayout from './NavigationLayout';
+import { speakerScreen } from './NavigationLayout';
 
 export default createStackNavigator(
   {

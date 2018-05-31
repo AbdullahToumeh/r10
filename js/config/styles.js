@@ -6,4 +6,9 @@ const colourStyles = {
   red: '#cf392a'
 };
 
+export const fontStyles = {
+  ios: 'Montserrat',
+  android: 'Montserrat-Regular'
+};
+
 export default colourStyles;
