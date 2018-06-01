@@ -15,8 +15,7 @@ class SessionContainer extends Component {
       time,
       location,
       speaker,
-      id,
-      faves
+      id
     } = this.props.navigation.state.params;
     return (
       <View style={styles.session}>
@@ -42,7 +41,7 @@ class SessionContainer extends Component {
             <Text style={styles.speakerName}>{speaker && speaker.name}</Text>
           </View>
         </TouchableOpacity>
-        {faves.includes(id) ? (
+        {Array.from(this.props.faves).find(fave => fave.id === id) ? (
           <TouchableOpacity
             onPress={() => this.props.dispatch(deleteTheFave(id))}
           >
@@ -60,4 +59,6 @@ class SessionContainer extends Component {
   }
 }
 
-export default connect()(withNavigation(SessionContainer));
+export default connect(state => ({
+  faves: state.faveData.faves
+}))(withNavigation(SessionContainer));

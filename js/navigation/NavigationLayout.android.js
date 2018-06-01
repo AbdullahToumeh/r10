@@ -25,9 +25,7 @@ const aboutStack = createStackNavigator(
   { 
     navigationOptions: ({ navigation }) => ({
       ...sharedNavigationOptions(navigation),
-      title: 'About',
-      headerLeft: <Text onPress={() => 
-        navigation.toggleDrawer()}><Ionicons name="md-menu" size={25} color="black" /></Text>
+      title: 'About'
     })
   }
 );
@@ -40,9 +38,7 @@ const homeStack = createStackNavigator(
   {
     navigationOptions: ({ navigation }) => ({
       ...sharedNavigationOptions(navigation),
-      title: 'Schedule',
-      headerLeft: <Text onPress={() => 
-        navigation.toggleDrawer()}><Ionicons name="md-menu" size={25} color="black" /></Text>
+      title: 'Schedule'
     })
   }
 );
@@ -54,9 +50,7 @@ const mapStack = createStackNavigator(
   {
     navigationOptions: ({ navigation }) => ({
       ...sharedNavigationOptions(navigation),
-      title: 'Map',
-      headerLeft: <Text onPress={() => 
-        navigation.toggleDrawer()}><Ionicons name="md-menu" size={25} color="black" /></Text>
+      title: 'Map'
     })
   }
 );
@@ -74,9 +68,7 @@ export const speakerScreen = createStackNavigator(
       headerTitleStyle: {
         color: 'white'
       },
-      title: 'About the Speaker',
-      headerLeft: <Text onPress={() => 
-        navigation.toggleDrawer()}><Ionicons name="md-menu" size={25} color="black" /></Text>
+      title: 'About the Speaker'
     })
   }
 );
@@ -88,9 +80,7 @@ const faveStack = createStackNavigator(
   {
     navigationOptions: ({ navigation }) => ({
       ...sharedNavigationOptions(navigation),
-      title: 'Faves',
-      headerLeft: <Text onPress={() => 
-        navigation.toggleDrawer()}><Ionicons name="md-menu" size={25} color="black" /></Text>
+      title: 'Faves'
     })
   }
 );

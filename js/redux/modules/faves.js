@@ -27,7 +27,7 @@ export const get_error = error => ({
 });
 
 const initialState = {
-  faves: [],
+  faves: getAllFaves(),
   error: ''
 };
 
@@ -35,8 +35,8 @@ const initialState = {
 export const createTheFave = faveid => dispatch => {
   try {
     addFave(faveid);
-    dispatch(get_faved_session_ids());
     dispatch(create_fave_session());
+    dispatch(get_faved_session_ids());
   } catch (e) {
     dispatch(get_error(e));
   }

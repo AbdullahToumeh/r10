@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { Text, SectionList, View, TouchableOpacity } from 'react-native';
 import Moment from 'moment';
 
+import { formatSessionData } from '../../lib/functions';
+
 import colourStyles from '../../config/styles';
 import styles from './styles';
 
@@ -29,30 +31,15 @@ const sessionQuery = gql`
 `;
 
 class Schedule extends Component {
-  formatSessionData = sessions => {
-    return sessions
-      .reduce((acc, curr) => {
-        const timeExists = acc.find(
-          section => section.title === curr.startTime
-        );
-        timeExists
-          ? timeExists.data.push(curr)
-          : acc.push({ title: curr.startTime, data: [curr] });
-        return acc;
-      }, [])
-      .sort((a, b) => a.title - b.title);
-  };
 
   render() {
-    console.log(this.props.faves);
     return (
       <Query query={sessionQuery}>
         {({ loading, error, data }) => {
           if (loading) return <LoadingWheel />;
           if (error) return <Text>Error :(</Text>;
 
-          const sortedData = this.formatSessionData(data.allSessions);
-          console.log(sortedData);
+          const sortedData = formatSessionData(data.allSessions);
 
           return (
             <SectionList
@@ -66,8 +53,7 @@ class Schedule extends Component {
                         time: item.startTime,
                         location: item.location,
                         speaker: item.speaker,
-                        id: item.id,
-                        faves: this.props.faves
+                        id: item.id
                       })
                     }
                   >
