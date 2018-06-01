@@ -64,11 +64,7 @@ export const speakerScreen = createStackNavigator(
       headerStyle: {
         backgroundColor: 'black',
         borderBottomColor: 'black'
-      },
-      headerTitleStyle: {
-        color: 'white'
-      },
-      title: 'About the Speaker'
+      }
     })
   }
 );

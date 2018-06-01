@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 50,
     marginBottom: 20,
+    marginTop: 20,
     alignSelf: 'center'
   },
   name: {
@@ -71,6 +72,18 @@ const styles = StyleSheet.create({
     }),
     fontSize: 15,
     textAlign: 'center'
+  },
+  header: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+    position: 'absolute',
+    top: 0
+  },
+  close: {
+    position: 'absolute',
+    top: 0,
+    left: 20
   }
 });
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, ScrollView, Text, TouchableOpacity, Image } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from './styles';
 
@@ -10,11 +11,16 @@ class SpeakerContainer extends Component {
     const { name, bio, image, url } = this.props.navigation.state.params;
     return (
       <View style={styles.background}>
+        <Icon 
+          name={'md-close'} 
+          size={30} 
+          color={'white'} 
+          style={styles.close} 
+          onPress={() => this.props.navigation.pop()}
+        />
+        <Text style={styles.header}>About the Speaker</Text>
         <View style={styles.container}>
           <ScrollView>
-            <TouchableOpacity onPress={() => this.props.navigation.pop()}>
-              <Text>Go Back</Text>
-            </TouchableOpacity>
             <Image source={{ uri: image }} style={styles.personImage} />
             <Text style={styles.name}>{name}</Text>
             <Text style={styles.bio}>{bio}</Text>
