@@ -5,11 +5,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text, SectionList, View, TouchableOpacity } from 'react-native';
 import Moment from 'moment';
+import ScheduleList from '../../components/ScheduleList';
 
 import { formatSessionData } from '../../lib/functions';
 
 import colourStyles from '../../config/styles';
 import styles from './styles';
+
 
 const sessionQuery = gql`
   {
@@ -44,25 +46,7 @@ class Schedule extends Component {
           return (
             <SectionList
               renderItem={({ item, index, section }) => (
-                <View key={index} style={styles.singleEvent}>
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.props.nav.navigate('Session', {
-                        title: item.title,
-                        description: item.description,
-                        time: item.startTime,
-                        location: item.location,
-                        speaker: item.speaker,
-                        id: item.id
-                      })
-                    }
-                  >
-                    <View>
-                      <Text style={styles.title}>{item.title}</Text>
-                      <Text style={styles.location}>{item.location}</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
+                <ScheduleList item={item} index={index} section={section} nav={this.props.nav}/>
               )}
               renderSectionHeader={({ section: { title } }) => (
                 <Text style={styles.sectionHeader}>

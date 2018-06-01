@@ -7,7 +7,7 @@ const ScheduleList = (props) => {
     <View key={props.index} style={styles.singleEvent}>
       <TouchableOpacity
         onPress={() =>
-          this.props.nav.navigate('Session', {
+          props.nav.navigate('Session', {
             title: props.item.title,
             description: props.item.description,
             time: props.item.startTime,

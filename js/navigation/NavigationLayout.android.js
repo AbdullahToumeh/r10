@@ -75,7 +75,8 @@ export const speakerScreen = createStackNavigator(
 
 const faveStack = createStackNavigator(
   {
-    Faves: FavesScreen
+    Faves: FavesScreen,
+    Session: SessionScreen
   },
   {
     navigationOptions: ({ navigation }) => ({
