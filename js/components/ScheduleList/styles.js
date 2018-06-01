@@ -1,10 +1,17 @@
-import { StyleSheet } from 'react-native';
-import colourStyles from '../../config/styles';
+import { StyleSheet, Platform } from 'react-native';
+import colourStyles, { fontStyles } from '../../config/styles';
 
 const styles = StyleSheet.create({
   location: {
     color: colourStyles.mediumgray,
-    fontFamily: 'Montserrat'
+    ...Platform.select({
+      android: {
+        fontFamily: fontStyles.android
+      },
+      ios: {
+        fontFamily: fontStyles.ios
+      }
+    })
   },
   singleEvent: {
     paddingBottom: 10,
@@ -15,7 +22,19 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     marginBottom: 5,
-    fontFamily: 'Montserrat'
+    ...Platform.select({
+      android: {
+        fontFamily: fontStyles.android
+      },
+      ios: {
+        fontFamily: fontStyles.ios
+      }
+    })
+  },
+  heart: {
+    position: 'absolute',
+    right: 15,
+    bottom: 0
   }
 });
 

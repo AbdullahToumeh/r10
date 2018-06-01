@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native'; 
-import colourStyles from '../../config/styles';
+import { StyleSheet, Platform } from 'react-native'; 
+import colourStyles, { fontStyles } from '../../config/styles';
 
 const styles = StyleSheet.create({
   seperator: {
@@ -13,7 +13,14 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingTop: 5,
     paddingBottom: 5,
-    fontFamily: 'Montserrat'
+    ...Platform.select({
+      android: {
+        fontFamily: fontStyles.android
+      },
+      ios: {
+        fontFamily: fontStyles.ios
+      }
+    })
   }
 });
 

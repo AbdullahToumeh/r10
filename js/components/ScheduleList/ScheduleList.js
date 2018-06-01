@@ -22,7 +22,7 @@ const ScheduleList = (props) => {
         <View>
           <Text style={styles.title}>{props.item.title}</Text>
           <Text style={styles.location}>{props.item.location}</Text>
-          {props.fav && <Icon name={'md-heart'} size={10} color={colourStyles.red}/>}
+          {props.fav && <Icon name={'md-heart'} size={15} color={colourStyles.red} style={styles.heart}/>}
         </View>
       </TouchableOpacity>
     </View>

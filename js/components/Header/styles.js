@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import colourStyles from '../../config/styles';
+import { StyleSheet, Platform } from 'react-native';
+import colourStyles, { fontStyles } from '../../config/styles';
 
 const styles = StyleSheet.create({
   header: {
@@ -10,7 +10,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
     paddingTop: 30,
-    paddingBottom: 10
+    paddingBottom: 10,
+    ...Platform.select({
+      android: {
+        fontFamily: fontStyles.android
+      },
+      ios: {
+        fontFamily: fontStyles.ios
+      }
+    })
   }
 });
 

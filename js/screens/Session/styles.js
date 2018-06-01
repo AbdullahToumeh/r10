@@ -1,24 +1,45 @@
-import { StyleSheet } from 'react-native';
-import colourStyles from '../../config/styles';
+import { StyleSheet, Platform } from 'react-native';
+import colourStyles, { fontStyles } from '../../config/styles';
 
 const styles = StyleSheet.create({
   location: {
     color: colourStyles.mediumgray,
     fontWeight: 'bold',
     marginBottom: 15,
-    fontFamily: 'Montserrat'
+    ...Platform.select({
+      android: {
+        fontFamily: fontStyles.android
+      },
+      ios: {
+        fontFamily: fontStyles.ios
+      }
+    })
   },
   time: {
     color: colourStyles.red,
     fontWeight: 'bold',
     marginBottom: 15,
-    fontFamily: 'Montserrat'
+    ...Platform.select({
+      android: {
+        fontFamily: fontStyles.android
+      },
+      ios: {
+        fontFamily: fontStyles.ios
+      }
+    })
   },
   event: {
     fontWeight: 'bold',
     marginBottom: 15,
     fontSize: 30,
-    fontFamily: 'Montserrat'
+    ...Platform.select({
+      android: {
+        fontFamily: fontStyles.android
+      },
+      ios: {
+        fontFamily: fontStyles.ios
+      }
+    })
   },
   session: {
     marginTop: 20,
@@ -26,7 +47,14 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   description: {
-    fontFamily: 'Montserrat',
+    ...Platform.select({
+      android: {
+        fontFamily: fontStyles.android
+      },
+      ios: {
+        fontFamily: fontStyles.ios
+      }
+    }),
     fontWeight: '200',
     fontSize: 15,
     marginBottom: 20
@@ -46,7 +74,14 @@ const styles = StyleSheet.create({
   },
   speakerName: {
     fontWeight: 'bold',
-    fontFamily: 'Montserrat'
+    ...Platform.select({
+      android: {
+        fontFamily: fontStyles.android
+      },
+      ios: {
+        fontFamily: fontStyles.ios
+      }
+    })
   },
   favesButton: {
     backgroundColor: colourStyles.blue,
@@ -61,6 +96,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 15,
     textAlign: 'center'
+  },
+  heart: {
+    position: 'absolute',
+    right: 10
   }
 });
 

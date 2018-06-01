@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import colourStyles from '../../config/styles';
+import { StyleSheet, Platform } from 'react-native';
+import colourStyles, { fontStyles } from '../../config/styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,12 +20,26 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 20,
     fontWeight: 'bold',
-    fontFamily: 'Montserrat',
+    ...Platform.select({
+      android: {
+        fontFamily: fontStyles.android
+      },
+      ios: {
+        fontFamily: fontStyles.ios
+      }
+    }),
     marginBottom: 20,
     alignSelf: 'center'
   },
   bio: {
-    fontFamily: 'Montserrat',
+    ...Platform.select({
+      android: {
+        fontFamily: fontStyles.android
+      },
+      ios: {
+        fontFamily: fontStyles.ios
+      }
+    }),
     marginBottom: 20,
     alignSelf: 'center',
     marginLeft: 10,
@@ -47,7 +61,14 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontFamily: 'Montserrat',
+    ...Platform.select({
+      android: {
+        fontFamily: fontStyles.android
+      },
+      ios: {
+        fontFamily: fontStyles.ios
+      }
+    }),
     fontSize: 15,
     textAlign: 'center'
   }
