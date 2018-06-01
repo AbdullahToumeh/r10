@@ -11,3 +11,8 @@ export const formatSessionData = sessions => {
     }, [])
     .sort((a, b) => a.title - b.title);
 };
+
+export const compareFaves = (faveList, sessions) => {
+  const faveSessions = sessions.filter(session => faveList.find(fave => fave.id === session.id));
+  return faveSessions;
+}

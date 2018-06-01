@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
+import Icon from 'react-native-vector-icons/Ionicons';
+import colourStyles from '../../config/styles';
 
 const ScheduleList = (props) => {
   return (
@@ -20,6 +22,7 @@ const ScheduleList = (props) => {
         <View>
           <Text style={styles.title}>{props.item.title}</Text>
           <Text style={styles.location}>{props.item.location}</Text>
+          {props.fav && <Icon name={'md-heart'} size={10} color={colourStyles.red}/>}
         </View>
       </TouchableOpacity>
     </View>

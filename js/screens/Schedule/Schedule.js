@@ -7,7 +7,7 @@ import { Text, SectionList, View, TouchableOpacity } from 'react-native';
 import Moment from 'moment';
 import ScheduleList from '../../components/ScheduleList';
 
-import { formatSessionData } from '../../lib/functions';
+import { formatSessionData, compareFaves } from '../../lib/functions';
 
 import colourStyles from '../../config/styles';
 import styles from './styles';
@@ -41,12 +41,20 @@ class Schedule extends Component {
           if (loading) return <LoadingWheel />;
           if (error) return <Text>Error :(</Text>;
 
+          const favesList = compareFaves(this.props.faves, data.allSessions);
+          console.log(favesList);
           const sortedData = formatSessionData(data.allSessions);
 
           return (
             <SectionList
               renderItem={({ item, index, section }) => (
-                <ScheduleList item={item} index={index} section={section} nav={this.props.nav}/>
+                <ScheduleList 
+                  item={item} 
+                  index={index} 
+                  section={section} 
+                  nav={this.props.nav} 
+                  fav={favesList.find(fave => fave.id === item.id)}
+                />
               )}
               renderSectionHeader={({ section: { title } }) => (
                 <Text style={styles.sectionHeader}>
