@@ -27,6 +27,6 @@ export const sharedNavigationOptions = navigation => ({
   headerTitleStyle: { color: 'white' },
   headerLeft: Platform.select({
     android: <Text onPress={() => 
-      navigation.toggleDrawer()}><Ionicons name="md-menu" size={25} color="black" /></Text>
+      navigation.toggleDrawer()} style={{marginLeft: 20}}><Ionicons name="md-menu" size={25} color="white"/></Text>
   })
 });
