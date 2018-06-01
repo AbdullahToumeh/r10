@@ -52,7 +52,13 @@ class FavesContainer extends Component {
           return (
             <SectionList
               renderItem={({ item, index, section }) => (
-                <ScheduleList item={item} index={index} section={section} nav={this.props.navigation}/>
+                <ScheduleList 
+                  item={item} 
+                  index={index} 
+                  section={section} 
+                  nav={this.props.navigation}
+                  fav={faveSessions.find(fave => fave.id === item.id)}
+                />
               )}
               renderSectionHeader={({ section: { title } }) => (
                 <Text style={styles.sectionHeader}>

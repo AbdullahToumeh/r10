@@ -4,6 +4,8 @@ import { withNavigation } from 'react-navigation';
 import Moment from 'moment';
 import { connect } from 'react-redux';
 import { createTheFave, deleteTheFave } from '../../redux/modules/faves';
+import Icon from 'react-native-vector-icons/Ionicons';
+import colourStyles from '../../config/styles';
 
 import styles from './styles';
 
@@ -17,8 +19,10 @@ class SessionContainer extends Component {
       speaker,
       id
     } = this.props.navigation.state.params;
+    const isFav = Array.from(this.props.faves).find(fave => fave.id === id);
     return (
       <View style={styles.session}>
+        {isFav && <Icon name={'md-heart'} size={10} color={colourStyles.red}/>}
         <Text style={styles.location}>{location}</Text>
         <Text style={styles.event}>{title}</Text>
         <Text style={styles.time}>{Moment(time).format('h:mm A')}</Text>
@@ -41,17 +45,19 @@ class SessionContainer extends Component {
             <Text style={styles.speakerName}>{speaker && speaker.name}</Text>
           </View>
         </TouchableOpacity>
-        {Array.from(this.props.faves).find(fave => fave.id === id) ? (
+        {isFav ? (
           <TouchableOpacity
             onPress={() => this.props.dispatch(deleteTheFave(id))}
+            style={styles.favesButton}
           >
-            <Text>Remove from Faves</Text>
+            <Text style={styles.buttonText}>Remove from Faves</Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
             onPress={() => this.props.dispatch(createTheFave(id))}
+            style={styles.favesButton}
           >
-            <Text>Add to Faves</Text>
+            <Text style={styles.buttonText}>Add to Faves</Text>
           </TouchableOpacity>
         )}
       </View>

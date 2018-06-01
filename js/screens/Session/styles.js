@@ -47,6 +47,20 @@ const styles = StyleSheet.create({
   speakerName: {
     fontWeight: 'bold',
     fontFamily: 'Montserrat'
+  },
+  favesButton: {
+    backgroundColor: colourStyles.blue,
+    padding: 10,
+    borderRadius: 25,
+    width: '50%',
+    alignSelf: 'center',
+    marginTop: 20
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 15,
+    textAlign: 'center'
   }
 });
 
