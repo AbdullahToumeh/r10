@@ -23,8 +23,7 @@ class AboutConduct extends Component {
     super();
     this.state = {
       isVisible: false,
-      currentIndex: -1,
-      animatedHeight: new Animated.Value(27.5)
+      currentIndex: -1
     };
   }
 
@@ -44,51 +43,7 @@ class AboutConduct extends Component {
     }
   }
 
-  _setMaxHeight(event) {
-    this.setState({
-      maxHeight: event.nativeEvent.layout.height
-    });
-  }
-
-  _setMinHeight(event) {
-    console.log('minimum height is: ', event.nativeEvent.layout.height - 10);
-    this.setState({
-      minHeight: event.nativeEvent.layout.height
-    });
-  }
-
-  // a lot of this animation code was inspired from:
-  // https://moduscreate.com/blog/expanding-and-collapsing-elements-using-animations-in-react-native/
-
-  toggle(index) {
-    //Step 1
-    let initialValue = this.state.isVisible
-      ? this.state.maxHeight + this.state.minHeight
-      : this.state.minHeight;
-    let finalValue = this.state.isVisible
-      ? this.state.minHeight
-      : this.state.maxHeight + this.state.minHeight;
-
-    this.setState({
-      isVisible: !this.state.isVisible,
-      currentIndex: index //Step 2
-    });
-
-    this.state.animatedHeight.setValue(initialValue); //Step 3
-    Animated.spring(
-      //Step 4
-      this.state.animatedHeight,
-      {
-        toValue: finalValue
-      }
-    ).start(); //Step 5
-  }
-
   render() {
-    const height = this.state.animatedHeight.interpolate({
-      inputRange: [0, 1],
-      outputRange: [0, 'auto']
-    });
     console.log(this.state);
     return (
       <View style={styles.conductContent}>

@@ -8,18 +8,19 @@ class SingleConduct extends Component {
     this.state = {
       isVisible: false,
       currentIndex: -1,
-      animatedHeight: new Animated.Value(27.5)
+      animatedHeight: new Animated.Value()
     };
   }
 
   _setMaxHeight(event) {
+    console.log('The max height is:', event.nativeEvent);
     this.setState({
       maxHeight: event.nativeEvent.layout.height
     });
   }
 
   _setMinHeight(event) {
-    console.log('minimum height is: ', event.nativeEvent.layout.height - 10);
+    // console.log('the minimum height is: ', event.nativeEvent);
     this.setState({
       minHeight: event.nativeEvent.layout.height
     });
@@ -72,8 +73,10 @@ class SingleConduct extends Component {
             : '+'}{' '}
           {this.props.title}
         </Text>
-        <View onLayout={this._setMaxHeight.bind(this)}>
-          <Text>{this.props.description}</Text>
+        <View>
+          <Text onLayout={this._setMaxHeight.bind(this)}>
+            {this.props.description}
+          </Text>
         </View>
         {/* {this.state.isVisible && this.state.currentIndex === index ? (
                   <Text id={'conduct' + index}>{description}</Text>

@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
   conductContent: {
     width: '90%',
     borderBottomColor: colourStyles.lightgray,
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
+    flex: 1
   },
   singleConduct: {
     marginBottom: 20,
