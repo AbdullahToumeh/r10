@@ -1,9 +1,10 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React, { Component } from 'react';
-import { Text, ScrollView, View } from 'react-native';
+import { Text, ScrollView, View, Animated, Easing } from 'react-native';
 
 import LoadingWheel from '../../components/LoadingWheel';
+import SingleConduct from './SingleConduct';
 
 import styles from './styles.js';
 
@@ -22,8 +23,17 @@ class AboutConduct extends Component {
     super();
     this.state = {
       isVisible: false,
-      currentIndex: -1
+      currentIndex: -1,
+      animatedHeight: new Animated.Value(27.5)
     };
+  }
+
+  showAnimatedContent() {
+    Animated.timing(this.state.animatedHeight, {
+      toValue: 1,
+      duration: 300,
+      easing: Easing.elastic(0.5)
+    });
   }
 
   showContent(index) {
@@ -34,28 +44,88 @@ class AboutConduct extends Component {
     }
   }
 
+  _setMaxHeight(event) {
+    this.setState({
+      maxHeight: event.nativeEvent.layout.height
+    });
+  }
+
+  _setMinHeight(event) {
+    console.log('minimum height is: ', event.nativeEvent.layout.height - 10);
+    this.setState({
+      minHeight: event.nativeEvent.layout.height
+    });
+  }
+
+  // a lot of this animation code was inspired from:
+  // https://moduscreate.com/blog/expanding-and-collapsing-elements-using-animations-in-react-native/
+
+  toggle(index) {
+    //Step 1
+    let initialValue = this.state.isVisible
+      ? this.state.maxHeight + this.state.minHeight
+      : this.state.minHeight;
+    let finalValue = this.state.isVisible
+      ? this.state.minHeight
+      : this.state.maxHeight + this.state.minHeight;
+
+    this.setState({
+      isVisible: !this.state.isVisible,
+      currentIndex: index //Step 2
+    });
+
+    this.state.animatedHeight.setValue(initialValue); //Step 3
+    Animated.spring(
+      //Step 4
+      this.state.animatedHeight,
+      {
+        toValue: finalValue
+      }
+    ).start(); //Step 5
+  }
+
   render() {
+    const height = this.state.animatedHeight.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, 'auto']
+    });
+    console.log(this.state);
     return (
       <View style={styles.conductContent}>
         <Query query={conductQuery}>
           {({ loading, error, data }) => {
-            if (loading) return <LoadingWheel />
-            if (error) return <Text>Error </Text>
+            if (loading) return <LoadingWheel />;
+            if (error) return <Text>Error </Text>;
 
             return data.allConducts.map(({ description, title }, index) => (
-              <View style={styles.singleConduct} key={index}>
+              <Animated.View
+                style={[
+                  styles.singleConduct,
+                  {
+                    height: this.state.animatedHeight
+                  }
+                ]}
+                key={index}
+              >
                 <Text
                   style={styles.conductTitle}
-                  onPress={() => this.showContent(index)}
+                  onPress={() => this.toggle(index).bind(this)}
+                  onLayout={this._setMinHeight.bind(this)}
                 >
-                  + {title}
+                  {this.state.isVisible && this.state.currentIndex === index
+                    ? '-'
+                    : '+'}{' '}
+                  {title}
                 </Text>
-                {this.state.isVisible && this.state.currentIndex === index ? (
+                <View onLayout={this._setMaxHeight.bind(this)}>
+                  <Text>{description}</Text>
+                </View>
+                {/* {this.state.isVisible && this.state.currentIndex === index ? (
                   <Text id={'conduct' + index}>{description}</Text>
                 ) : (
-                  <Text></Text>
-                )}
-              </View>
+                  <View></View>
+                )} */}
+              </Animated.View>
             ));
           }}
         </Query>

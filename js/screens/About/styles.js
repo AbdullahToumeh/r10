@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   singleConduct: {
-    marginBottom: 20
+    marginBottom: 20,
+    overflow: 'hidden'
   }
 });
 
