@@ -98,34 +98,11 @@ class AboutConduct extends Component {
             if (error) return <Text>Error </Text>;
 
             return data.allConducts.map(({ description, title }, index) => (
-              <Animated.View
-                style={[
-                  styles.singleConduct,
-                  {
-                    height: this.state.animatedHeight
-                  }
-                ]}
-                key={index}
-              >
-                <Text
-                  style={styles.conductTitle}
-                  onPress={() => this.toggle(index).bind(this)}
-                  onLayout={this._setMinHeight.bind(this)}
-                >
-                  {this.state.isVisible && this.state.currentIndex === index
-                    ? '-'
-                    : '+'}{' '}
-                  {title}
-                </Text>
-                <View onLayout={this._setMaxHeight.bind(this)}>
-                  <Text>{description}</Text>
-                </View>
-                {/* {this.state.isVisible && this.state.currentIndex === index ? (
-                  <Text id={'conduct' + index}>{description}</Text>
-                ) : (
-                  <View></View>
-                )} */}
-              </Animated.View>
+              <SingleConduct
+                description={description}
+                title={title}
+                index={index}
+              />
             ));
           }}
         </Query>
