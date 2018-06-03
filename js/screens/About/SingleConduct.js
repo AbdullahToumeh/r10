@@ -5,12 +5,10 @@ import styles from './styles';
 class SingleConduct extends Component {
   constructor() {
     super();
-    this.minHeight;
-    this.maxHeight;
     this.title = React.createRef();
     this.description = React.createRef();
     this.state = {
-      isVisible: true,
+      isVisible: false,
       currentIndex: -1,
       animatedHeight: new Animated.Value(),
       minHeight: 0,
@@ -18,13 +16,15 @@ class SingleConduct extends Component {
     };
   }
 
+  // component did mount needs a setTimeout so the function runs async to when the component actually mounts, if function is put inside height always renders as 0 because it doesnt actually exist yet
   componentDidMount() {
-    setTimeout(this.measureTitle.bind(this));
+    setTimeout(this.measureComponents.bind(this));
   }
 
-  measureTitle() {
+  measureComponents() {
     this.title.current.measure((ox, oy, width, height, px, py) => {
       if (height > this.state.minHeight) {
+        this.state.animatedHeight.setValue(height + 10);
         this.setState({ minHeight: height + 10 });
       }
     });
@@ -36,26 +36,11 @@ class SingleConduct extends Component {
     });
   }
 
-  _setMaxHeight(event) {
-    // console.log('The max height is:', event.nativeEvent);
-    // this.setState({
-    //   maxHeight: event.nativeEvent.layout.height
-    // });
-    // this.maxHeight = event.nativeEvent.layout.height;
-  }
-
-  _setMinHeight(event) {
-    // this.setState({
-    //   minHeight: event.nativeEvent.layout.height
-    // });
-    // this.minHeight = event.nativeEvent.layout.height;
-  }
-
   // a lot of this animation code was inspired from:
   // https://moduscreate.com/blog/expanding-and-collapsing-elements-using-animations-in-react-native/
 
   toggle(index) {
-    //Step 1
+    //Step 1 - set inital and final height values based on if component is currently visible
     let initialValue = this.state.isVisible
       ? this.state.maxHeight + this.state.minHeight
       : this.state.minHeight;
@@ -63,26 +48,20 @@ class SingleConduct extends Component {
       ? this.state.minHeight
       : this.state.maxHeight + this.state.minHeight;
 
-    console.log('THIS IS INITIAL VALUE: ', initialValue);
-    console.log('THIS IS FINAL VALUE: ', finalValue);
-
     this.setState({
-      isVisible: !this.state.isVisible //Step 2
+      isVisible: !this.state.isVisible //Step 2 - switch components visibility
     });
 
-    this.state.animatedHeight.setValue(initialValue); //Step 3
     Animated.spring(
-      //Step 4
+      //Step 3 - use the spring animation on animtedHeight in state, and move it to the final height value (either closed or open)
       this.state.animatedHeight,
       {
         toValue: finalValue
       }
-    ).start(); //Step 5
+    ).start(); //Step 4 - start the animation!
   }
 
   render() {
-    // console.log('THIS IS ANIMATED HEIGHT: ', this.state.animatedHeight);
-    console.log(this.props.index);
     return (
       <Animated.View
         style={[
@@ -96,28 +75,18 @@ class SingleConduct extends Component {
         <Text
           style={styles.conductTitle}
           onPress={this.toggle.bind(this)}
-          onLayout={this._setMinHeight.bind(this)}
           ref={this.title}
         >
           {this.state.isVisible && this.state.currentIndex === this.props.index
             ? '-'
-            : '+'}{' '}
+            : '+'}
           {this.props.title}
         </Text>
         <View>
-          <Text
-            // onLayout={this._setMaxHeight.bind(this)}
-            style={styles.description}
-            ref={this.description}
-          >
+          <Text style={styles.description} ref={this.description}>
             {this.props.description}
           </Text>
         </View>
-        {/* {this.state.isVisible && this.state.currentIndex === index ? (
-                  <Text id={'conduct' + index}>{description}</Text>
-                ) : (
-                  <View></View>
-                )} */}
       </Animated.View>
     );
   }
