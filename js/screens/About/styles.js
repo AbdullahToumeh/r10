@@ -56,6 +56,9 @@ const styles = StyleSheet.create({
   singleConduct: {
     marginBottom: 20,
     overflow: 'hidden'
+  },
+  description: {
+    height: 'auto'
   }
 });
 

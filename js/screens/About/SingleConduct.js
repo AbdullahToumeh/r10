@@ -5,25 +5,56 @@ import styles from './styles';
 class SingleConduct extends Component {
   constructor() {
     super();
+    this.minHeight;
+    this.maxHeight;
+    this.title = React.createRef();
     this.state = {
       isVisible: false,
       currentIndex: -1,
-      animatedHeight: new Animated.Value()
+      animatedHeight: new Animated.Value(),
+      minHeight: 0,
+      maxHeight: 0
     };
   }
 
+  componentDidMount() {
+    console.log(this.title.current);
+
+    if (this.title.current) {
+      this.title.current.measure((ox, oy, width, height, px, py) => {
+        console.log('this is height', height);
+        if (height > this.state.minHeight) {
+          console.log('wtf');
+          this.setState({ minHeight: height });
+        }
+      });
+    }
+
+    _logLargestSize = (ox, oy, width, height, px, py) => {
+      console.log('this is height', height);
+      if (height > this.state.minHeight) {
+        console.log('wtf');
+        this.setState({ minHeight: height });
+      }
+    };
+
+    console.log(this.state.minHeight);
+  }
+
   _setMaxHeight(event) {
-    console.log('The max height is:', event.nativeEvent);
-    this.setState({
-      maxHeight: event.nativeEvent.layout.height
-    });
+    // console.log('The max height is:', event.nativeEvent);
+    // this.setState({
+    //   maxHeight: event.nativeEvent.layout.height
+    // });
+    // this.maxHeight = event.nativeEvent.layout.height;
   }
 
   _setMinHeight(event) {
-    // console.log('the minimum height is: ', event.nativeEvent);
-    this.setState({
-      minHeight: event.nativeEvent.layout.height
-    });
+    console.log('the minimum height is: ', event.nativeEvent);
+    // this.setState({
+    //   minHeight: event.nativeEvent.layout.height
+    // });
+    // this.minHeight = event.nativeEvent.layout.height;
   }
 
   // a lot of this animation code was inspired from:
@@ -37,6 +68,9 @@ class SingleConduct extends Component {
     let finalValue = this.state.isVisible
       ? this.state.minHeight
       : this.state.maxHeight + this.state.minHeight;
+
+    console.log('THIS IS INITIAL VALUE: ', initialValue);
+    console.log('THIS IS FINAL VALUE: ', finalValue);
 
     this.setState({
       isVisible: !this.state.isVisible //Step 2
@@ -53,6 +87,8 @@ class SingleConduct extends Component {
   }
 
   render() {
+    // console.log('THIS IS ANIMATED HEIGHT: ', this.state.animatedHeight);
+    console.log(this.props.index);
     return (
       <Animated.View
         style={[
@@ -66,7 +102,8 @@ class SingleConduct extends Component {
         <Text
           style={styles.conductTitle}
           onPress={this.toggle.bind(this)}
-          onLayout={this._setMinHeight.bind(this)}
+          // onLayout={this._setMinHeight.bind(this)}
+          ref={this.title}
         >
           {this.state.isVisible && this.state.currentIndex === this.props.index
             ? '-'
@@ -74,7 +111,11 @@ class SingleConduct extends Component {
           {this.props.title}
         </Text>
         <View>
-          <Text onLayout={this._setMaxHeight.bind(this)}>
+          <Text
+            // onLayout={this._setMaxHeight.bind(this)}
+            style={styles.description}
+            ref="description"
+          >
             {this.props.description}
           </Text>
         </View>

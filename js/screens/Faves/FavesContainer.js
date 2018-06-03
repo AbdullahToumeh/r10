@@ -31,31 +31,36 @@ const sessionQuery = gql`
   }
 `;
 
-
 class FavesContainer extends Component {
   compareFaves = (faveList, sessions) => {
-    const faveSessions = sessions.filter(session => faveList.find(fave => fave.id === session.id));
+    const faveSessions = sessions.filter(session =>
+      faveList.find(fave => fave.id === session.id)
+    );
     return faveSessions;
-  }
+  };
+
   render() {
     const favesArray = Array.from(this.props.faves);
     return (
       <Query query={sessionQuery}>
-        {({loading, error, data}) => {
+        {({ loading, error, data }) => {
           if (loading) return <LoadingWheel />;
           if (error) return <Text>Error :(</Text>;
-          
-          const faveSessions = this.compareFaves(this.props.faves, data.allSessions)
+
+          const faveSessions = this.compareFaves(
+            this.props.faves,
+            data.allSessions
+          );
           const sortedData = formatSessionData(faveSessions);
           console.log(sortedData);
 
           return (
             <SectionList
               renderItem={({ item, index, section }) => (
-                <ScheduleList 
-                  item={item} 
-                  index={index} 
-                  section={section} 
+                <ScheduleList
+                  item={item}
+                  index={index}
+                  section={section}
                   nav={this.props.navigation}
                   fav={faveSessions.find(fave => fave.id === item.id)}
                 />
@@ -69,7 +74,7 @@ class FavesContainer extends Component {
               sections={sortedData}
               keyExtractor={(item, index) => item + index}
             />
-          )
+          );
         }}
       </Query>
     );

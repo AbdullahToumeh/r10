@@ -4,7 +4,8 @@ import styles from './styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import colourStyles from '../../config/styles';
 
-const ScheduleList = (props) => {
+const ScheduleList = props => {
+  console.log(props.nav.navigate);
   return (
     <View key={props.index} style={styles.singleEvent}>
       <TouchableOpacity
@@ -22,11 +23,18 @@ const ScheduleList = (props) => {
         <View>
           <Text style={styles.title}>{props.item.title}</Text>
           <Text style={styles.location}>{props.item.location}</Text>
-          {props.fav && <Icon name={'md-heart'} size={15} color={colourStyles.red} style={styles.heart}/>}
+          {props.fav && (
+            <Icon
+              name={'md-heart'}
+              size={15}
+              color={colourStyles.red}
+              style={styles.heart}
+            />
+          )}
         </View>
       </TouchableOpacity>
     </View>
-  )
+  );
 };
 
 export default ScheduleList;
