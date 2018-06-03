@@ -22,7 +22,7 @@ class SessionContainer extends Component {
     const isFav = Array.from(this.props.faves).find(fave => fave.id === id);
     return (
       <View style={styles.session}>
-        {isFav && <Icon name={'md-heart'} size={15} color={colourStyles.red} style={styles.heart}/>}
+        {isFav && <Icon name={'md-heart'} size={15} color={colourStyles.red} style={styles.heart} />}
         <Text style={styles.location}>{location}</Text>
         <Text style={styles.event}>{title}</Text>
         <Text style={styles.time}>{Moment(time).format('h:mm A')}</Text>
@@ -53,13 +53,13 @@ class SessionContainer extends Component {
             <Text style={styles.buttonText}>Remove from Faves</Text>
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity
-            onPress={() => this.props.dispatch(createTheFave(id))}
-            style={styles.favesButton}
-          >
-            <Text style={styles.buttonText}>Add to Faves</Text>
-          </TouchableOpacity>
-        )}
+            <TouchableOpacity
+              onPress={() => this.props.dispatch(createTheFave(id))}
+              style={styles.favesButton}
+            >
+              <Text style={styles.buttonText}>Add to Faves</Text>
+            </TouchableOpacity>
+          )}
       </View>
     );
   }
