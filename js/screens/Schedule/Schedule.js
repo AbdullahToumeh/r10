@@ -12,7 +12,6 @@ import { formatSessionData, compareFaves } from '../../lib/functions';
 import colourStyles from '../../config/styles';
 import styles from './styles';
 
-
 const sessionQuery = gql`
   {
     allSessions {
@@ -33,7 +32,6 @@ const sessionQuery = gql`
 `;
 
 class Schedule extends Component {
-
   render() {
     return (
       <Query query={sessionQuery}>
@@ -48,11 +46,11 @@ class Schedule extends Component {
           return (
             <SectionList
               renderItem={({ item, index, section }) => (
-                <ScheduleList 
-                  item={item} 
-                  index={index} 
-                  section={section} 
-                  nav={this.props.nav} 
+                <ScheduleList
+                  item={item}
+                  index={index}
+                  section={section}
+                  nav={this.props.nav}
                   fav={favesList.find(fave => fave.id === item.id)}
                 />
               )}

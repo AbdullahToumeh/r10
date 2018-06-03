@@ -27,24 +27,7 @@ class AboutConduct extends Component {
     };
   }
 
-  showAnimatedContent() {
-    Animated.timing(this.state.animatedHeight, {
-      toValue: 1,
-      duration: 300,
-      easing: Easing.elastic(0.5)
-    });
-  }
-
-  showContent(index) {
-    if (index === this.state.currentIndex) {
-      this.setState({ isVisible: !this.state.isVisible, currentIndex: index });
-    } else {
-      this.setState({ isVisible: true, currentIndex: index });
-    }
-  }
-
   render() {
-    console.log(this.state);
     return (
       <View style={styles.conductContent}>
         <Query query={conductQuery}>

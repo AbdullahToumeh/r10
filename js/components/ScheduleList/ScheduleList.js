@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import colourStyles from '../../config/styles';
 
 const ScheduleList = props => {
-  console.log(props.nav.navigate);
   return (
     <View key={props.index} style={styles.singleEvent}>
       <TouchableOpacity

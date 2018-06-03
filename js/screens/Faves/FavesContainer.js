@@ -3,7 +3,6 @@ import { View, Text, SectionList } from 'react-native';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import realm from '../../config/models';
-import Faves from './Faves';
 import { connect } from 'react-redux';
 import { formatSessionData } from '../../lib/functions';
 import LoadingWheel from '../../components/LoadingWheel';
