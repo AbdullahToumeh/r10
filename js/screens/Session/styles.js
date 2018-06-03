@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     backgroundColor: colourStyles.blue,
     padding: 10,
     borderRadius: 25,
-    width: '50%',
+    width: '70%',
     alignSelf: 'center',
     marginTop: 20
   },
@@ -100,6 +100,18 @@ const styles = StyleSheet.create({
   heart: {
     position: 'absolute',
     right: 10
+  },
+  gradientButton: {
+    ...Platform.select({
+      android: {
+        width: '100%',
+        borderRadius: 25
+      },
+      ios: {
+        width: '111%',
+        borderRadius: 25
+      }
+    })
   }
 });
 
