@@ -8,8 +8,9 @@ class SingleConduct extends Component {
     this.minHeight;
     this.maxHeight;
     this.title = React.createRef();
+    this.description = React.createRef();
     this.state = {
-      isVisible: false,
+      isVisible: true,
       currentIndex: -1,
       animatedHeight: new Animated.Value(),
       minHeight: 0,
@@ -18,27 +19,21 @@ class SingleConduct extends Component {
   }
 
   componentDidMount() {
-    console.log(this.title.current);
+    setTimeout(this.measureTitle.bind(this));
+  }
 
-    if (this.title.current) {
-      this.title.current.measure((ox, oy, width, height, px, py) => {
-        console.log('this is height', height);
-        if (height > this.state.minHeight) {
-          console.log('wtf');
-          this.setState({ minHeight: height });
-        }
-      });
-    }
-
-    _logLargestSize = (ox, oy, width, height, px, py) => {
-      console.log('this is height', height);
+  measureTitle() {
+    this.title.current.measure((ox, oy, width, height, px, py) => {
       if (height > this.state.minHeight) {
-        console.log('wtf');
-        this.setState({ minHeight: height });
+        this.setState({ minHeight: height + 10 });
       }
-    };
+    });
 
-    console.log(this.state.minHeight);
+    this.description.current.measure((ox, oy, width, height, px, py) => {
+      if (height > this.state.minHeight) {
+        this.setState({ maxHeight: height });
+      }
+    });
   }
 
   _setMaxHeight(event) {
@@ -50,7 +45,6 @@ class SingleConduct extends Component {
   }
 
   _setMinHeight(event) {
-    console.log('the minimum height is: ', event.nativeEvent);
     // this.setState({
     //   minHeight: event.nativeEvent.layout.height
     // });
@@ -102,7 +96,7 @@ class SingleConduct extends Component {
         <Text
           style={styles.conductTitle}
           onPress={this.toggle.bind(this)}
-          // onLayout={this._setMinHeight.bind(this)}
+          onLayout={this._setMinHeight.bind(this)}
           ref={this.title}
         >
           {this.state.isVisible && this.state.currentIndex === this.props.index
@@ -114,7 +108,7 @@ class SingleConduct extends Component {
           <Text
             // onLayout={this._setMaxHeight.bind(this)}
             style={styles.description}
-            ref="description"
+            ref={this.description}
           >
             {this.props.description}
           </Text>
