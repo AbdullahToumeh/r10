@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
   },
   singleConduct: {
     marginBottom: 20,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    zIndex: 1
   },
   description: {
     height: 'auto'

@@ -77,9 +77,9 @@ class SingleConduct extends Component {
           onPress={this.toggle.bind(this)}
           ref={this.title}
         >
-          {this.state.isVisible && this.state.currentIndex === this.props.index
+          {this.state.isVisible
             ? '-'
-            : '+'}
+            : '+'}{' '}
           {this.props.title}
         </Text>
         <View>
