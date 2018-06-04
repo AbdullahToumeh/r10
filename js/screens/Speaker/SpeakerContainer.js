@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, TouchableOpacity, Image } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity, Image, Linking } from 'react-native';
+import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from './styles';
@@ -11,11 +12,11 @@ class SpeakerContainer extends Component {
     const { name, bio, image, url } = this.props.navigation.state.params;
     return (
       <View style={styles.background}>
-        <Icon 
-          name={'md-close'} 
-          size={30} 
-          color={'white'} 
-          style={styles.close} 
+        <Icon
+          name={'md-close'}
+          size={30}
+          color={'white'}
+          style={styles.close}
           onPress={() => this.props.navigation.pop()}
         />
         <Text style={styles.header}>About the Speaker</Text>
@@ -25,7 +26,7 @@ class SpeakerContainer extends Component {
             <Text style={styles.name}>{name}</Text>
             <Text style={styles.bio}>{bio}</Text>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate(url)}
+              onPress={() => Linking.openURL(url)}
               style={styles.button}
             >
               <Text style={styles.buttonText}>Read More on Wikipedia</Text>
@@ -35,6 +36,10 @@ class SpeakerContainer extends Component {
       </View>
     );
   }
+}
+
+SpeakerContainer.propTypes = {
+  navigation: PropTypes.object.isRequired
 }
 
 export default SpeakerContainer;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, ScrollView, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import LinearGradient from 'react-native-linear-gradient';
+import PropTypes from 'prop-types';
 import Moment from 'moment';
 import { connect } from 'react-redux';
 import { createTheFave, deleteTheFave } from '../../redux/modules/faves';
@@ -77,6 +78,11 @@ class SessionContainer extends Component {
       </ScrollView>
     );
   }
+}
+
+SessionContainer.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  faves: PropTypes.object.isRequired
 }
 
 export default connect(state => ({

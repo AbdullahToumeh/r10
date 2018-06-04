@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import colourStyles from '../../config/styles';
+import PropTypes from 'prop-types';
 
 const ScheduleList = props => {
   return (
@@ -35,5 +36,16 @@ const ScheduleList = props => {
     </View>
   );
 };
+
+ScheduleList.propTypes = {
+  index: PropTypes.number.isRequired,
+  item: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ])
+  ),
+  nav: PropTypes.object.isRequired
+}
 
 export default ScheduleList;

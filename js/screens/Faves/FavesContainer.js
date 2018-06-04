@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, SectionList } from 'react-native';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 import realm from '../../config/models';
 import { connect } from 'react-redux';
 import { formatSessionData } from '../../lib/functions';
@@ -51,7 +52,6 @@ class FavesContainer extends Component {
             data.allSessions
           );
           const sortedData = formatSessionData(faveSessions);
-          console.log(sortedData);
 
           return (
             <SectionList
@@ -78,6 +78,11 @@ class FavesContainer extends Component {
       </Query>
     );
   }
+}
+
+FavesContainer.propTypes = {
+  faves: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired
 }
 
 export default connect(state => ({

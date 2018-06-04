@@ -1,11 +1,13 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import LoadingWheel from '../../components/LoadingWheel';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Text, SectionList, View, TouchableOpacity } from 'react-native';
 import Moment from 'moment';
+
 import ScheduleList from '../../components/ScheduleList';
+import LoadingWheel from '../../components/LoadingWheel';
 
 import { formatSessionData, compareFaves } from '../../lib/functions';
 
@@ -40,7 +42,6 @@ class Schedule extends Component {
           if (error) return <Text>Error :(</Text>;
 
           const favesList = compareFaves(this.props.faves, data.allSessions);
-          console.log(favesList);
           const sortedData = formatSessionData(data.allSessions);
 
           return (
@@ -68,6 +69,11 @@ class Schedule extends Component {
       </Query>
     );
   }
+}
+
+Schedule.propTypes = {
+  faves: PropTypes.object.isRequired,
+  nav: PropTypes.object.isRequired
 }
 
 export default connect(state => ({

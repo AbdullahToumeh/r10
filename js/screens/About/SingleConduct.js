@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Animated } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from './styles';
 
 class SingleConduct extends Component {
@@ -90,6 +91,12 @@ class SingleConduct extends Component {
       </Animated.View>
     );
   }
+}
+
+SingleConduct.propTypes = {
+  index: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired
 }
 
 export default SingleConduct;
