@@ -40,6 +40,7 @@ class AboutConduct extends Component {
                 description={description}
                 title={title}
                 index={index}
+                key={index}
               />
             ));
           }}
