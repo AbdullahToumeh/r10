@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import realm from '../../config/models';
 import { connect } from 'react-redux';
-import { formatSessionData } from '../../lib/functions';
+import { formatSessionData, compareFaves } from '../../lib/functions';
 import LoadingWheel from '../../components/LoadingWheel';
 import ScheduleList from '../../components/ScheduleList';
 import Moment from 'moment';
@@ -32,12 +32,6 @@ const sessionQuery = gql`
 `;
 
 class FavesContainer extends Component {
-  compareFaves = (faveList, sessions) => {
-    const faveSessions = sessions.filter(session =>
-      faveList.find(fave => fave.id === session.id)
-    );
-    return faveSessions;
-  };
 
   render() {
     const favesArray = Array.from(this.props.faves);
@@ -47,7 +41,7 @@ class FavesContainer extends Component {
           if (loading) return <LoadingWheel />;
           if (error) return <Text>Error :(</Text>;
 
-          const faveSessions = this.compareFaves(
+          const faveSessions = compareFaves(
             this.props.faves,
             data.allSessions
           );

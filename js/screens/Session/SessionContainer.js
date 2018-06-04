@@ -30,7 +30,7 @@ class SessionContainer extends Component {
         <Text style={styles.event}>{title}</Text>
         <Text style={styles.time}>{Moment(time).format('h:mm A')}</Text>
         <Text style={styles.description}>{description}</Text>
-        <Text style={styles.location}>Presented by:</Text>
+        {speaker && <Text style={styles.location}>Presented by:</Text>}
         <TouchableOpacity
           onPress={() =>
             this.props.navigation.push('Speaker', {
