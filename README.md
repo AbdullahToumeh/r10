@@ -3,9 +3,11 @@
 R10 is built using react-native to create a cross platform app for a developer conference. It features a responsive About/Code of Conduct screen, a full schedule list grouped by time with the ability to favourite a session and see it in a seperate favourites area, as well as a (soon to be built) map to view the venue.
 
 About:
+
 ![About Screen](js/assets/r10-about-gif.gif)
 
 Schedule:
+
 ![Schedule Screen](js/assets/r10-schedule-gif.gif)
 
 ## Features
@@ -21,9 +23,7 @@ Schedule:
 `$ npm install`
 
 For iOS: (simulator is optional)
-
 `$ react-native run-ios --simulator="iPhone SE"`
 
 For Android:
-
 `$ react-native run-android`
