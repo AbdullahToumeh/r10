@@ -6,7 +6,7 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React from 'react';
 
-import {Text} from 'react-native';
+import { Text } from 'react-native';
 
 import AboutContainer from '../screens/About';
 import ScheduleScreen from '../screens/Schedule';
@@ -22,7 +22,7 @@ const aboutStack = createStackNavigator(
   {
     About: AboutContainer
   },
-  { 
+  {
     navigationOptions: ({ navigation }) => ({
       ...sharedNavigationOptions(navigation),
       title: 'About'
@@ -105,9 +105,9 @@ mapStack.navigationOptions = {
 
 export default createDrawerNavigator(
   {
-    About: aboutStack,
     Schedule: homeStack,
+    Map: mapStack,
     Faves: faveStack,
-    Map: mapStack
+    About: aboutStack
   }
 );
