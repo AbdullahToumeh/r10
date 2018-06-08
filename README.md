@@ -15,15 +15,16 @@ Schedule:
 - Used React Native to build cross-platform functionality, and utilizes the Platform module to account for the differences in iOS and Android.
 - Used Apollo Client and GraphQL to fetch the session data.
 - Used Realm as a database to store favourites data. 
-- Used the Animate module built in react nature for animations on the About screen.
+- Used the Animate module built in react native for animations on the About screen.
 - Used Redux for state management for favourites.
 
 ## Installation & Set Up
 
 `$ npm install`
 
-For iOS: (simulator is optional)
+For iOS: (simulator is optional)  
 `$ react-native run-ios --simulator="iPhone SE"`
 
-For Android:
+For Android:  
+Start the simulator of your choosing  
 `$ react-native run-android`

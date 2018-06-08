@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, ScrollView, View, Image, TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
-import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 import PropTypes from 'prop-types';
 import Moment from 'moment';
 import { connect } from 'react-redux';
 import { createTheFave, deleteTheFave } from '../../redux/modules/faves';
 import colourStyles from '../../config/styles';
+import LinearGradientButton from '../../components/LinearGradientButton';
 
 
 import styles from './styles';
@@ -49,31 +49,9 @@ class SessionContainer extends Component {
           </View>
         </TouchableOpacity>
         {isFav ? (
-          <TouchableOpacity
-            onPress={() => this.props.dispatch(deleteTheFave(id))}
-            style={styles.favesButton}
-          >
-            <LinearGradient
-              colors={[colourStyles.purple, colourStyles.blue]}
-              start={{ x: 0.0, y: 1.0 }}
-              end={{ x: 1.0, y: 0.0 }}
-              style={[StyleSheet.absoluteFill, styles.gradientButton]}
-            />
-            <Text style={styles.buttonText}>Remove from Faves</Text>
-          </TouchableOpacity>
+          <LinearGradientButton buttonFunction={() => this.props.dispatch(deleteTheFave(id))} buttonText="Remove from Faves" />
         ) : (
-            <TouchableOpacity
-              onPress={() => this.props.dispatch(createTheFave(id))}
-              style={styles.favesButton}
-            >
-              <LinearGradient
-                colors={[colourStyles.purple, colourStyles.blue]}
-                start={{ x: 0.0, y: 1.0 }}
-                end={{ x: 1.0, y: 0.0 }}
-                style={[StyleSheet.absoluteFill, styles.gradientButton]}
-              />
-              <Text style={styles.buttonText}>Add to Faves</Text>
-            </TouchableOpacity>
+            <LinearGradientButton buttonFunction={() => this.props.dispatch(createTheFave(id))} buttonText="Add to Faves" />
           )}
       </ScrollView>
     );
