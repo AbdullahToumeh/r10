@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Text, SectionList, View, TouchableOpacity } from 'react-native';
+import { Text, SectionList, View } from 'react-native';
 import Moment from 'moment';
 
 import ScheduleList from '../../components/ScheduleList';
@@ -11,7 +11,6 @@ import LoadingWheel from '../../components/LoadingWheel';
 
 import { formatSessionData, compareFaves } from '../../lib/functions';
 
-import colourStyles from '../../config/styles';
 import styles from './styles';
 
 const sessionQuery = gql`
@@ -72,9 +71,9 @@ class Schedule extends Component {
 }
 
 Schedule.propTypes = {
-  faves: PropTypes.object.isRequired,
-  nav: PropTypes.object.isRequired
-}
+  faves: PropTypes.objectOf(PropTypes.object).isRequired,
+  nav: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.object, PropTypes.func])).isRequired
+};
 
 export default connect(state => ({
   faves: state.faveData.faves

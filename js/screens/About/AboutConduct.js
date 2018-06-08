@@ -1,12 +1,12 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React, { Component } from 'react';
-import { Text, ScrollView, View, Animated, Easing } from 'react-native';
+import { Text, View } from 'react-native';
 
 import LoadingWheel from '../../components/LoadingWheel';
 import SingleConduct from './SingleConduct';
 
-import styles from './styles.js';
+import styles from './styles';
 
 const conductQuery = gql`
   {
@@ -19,14 +19,6 @@ const conductQuery = gql`
 `;
 
 class AboutConduct extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isVisible: false,
-      currentIndex: -1
-    };
-  }
-
   render() {
     return (
       <View style={styles.conductContent}>

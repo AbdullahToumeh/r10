@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
+import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -8,14 +6,13 @@ import client from './config/api';
 
 import RootStackNavigator from './navigation/RootStackNavigator';
 
-export default class App extends Component {
-  render() {
-    return (
-      <ApolloProvider client={client}>
-        <Provider store={store}>
-          <RootStackNavigator />
-        </Provider>
-      </ApolloProvider>
-    );
-  }
-}
+const App = () => (
+  <ApolloProvider client={client}>
+    <Provider store={store}>
+      <RootStackNavigator />
+    </Provider>
+  </ApolloProvider>
+);
+
+
+export default App;

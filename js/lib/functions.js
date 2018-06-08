@@ -1,18 +1,16 @@
-export const formatSessionData = sessions => {
-  return sessions
+export const formatSessionData = sessions => (
+  sessions
     .reduce((acc, curr) => {
-      const timeExists = acc.find(
-        section => section.title === curr.startTime
-      );
+      const timeExists = acc.find(section => section.title === curr.startTime);
       timeExists
         ? timeExists.data.push(curr)
         : acc.push({ title: curr.startTime, data: [curr] });
       return acc;
     }, [])
-    .sort((a, b) => a.title - b.title);
-};
+    .sort((a, b) => a.title - b.title)
+);
 
 export const compareFaves = (faveList, sessions) => {
   const faveSessions = sessions.filter(session => faveList.find(fave => fave.id === session.id));
   return faveSessions;
-}
+};

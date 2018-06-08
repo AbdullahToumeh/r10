@@ -14,7 +14,7 @@ class MapContainer extends Component {
       //   }}
       // />
       <View>
-        <Text>I'm the map</Text>
+        <Text>Im the map</Text>
       </View>
     );
   }

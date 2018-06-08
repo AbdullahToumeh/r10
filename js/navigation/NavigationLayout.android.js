@@ -1,12 +1,9 @@
 import {
   createStackNavigator,
-  createBottomTabNavigator,
   createDrawerNavigator
 } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React from 'react';
-
-import { Text } from 'react-native';
 
 import AboutContainer from '../screens/About';
 import ScheduleScreen from '../screens/Schedule';
@@ -15,7 +12,6 @@ import SessionScreen from '../screens/Session';
 import SpeakerScreen from '../screens/Speaker';
 import MapScreen from '../screens/Map';
 
-import colourStyles from '../config/styles';
 import { sharedNavigationOptions } from './config';
 
 const aboutStack = createStackNavigator(
@@ -60,7 +56,7 @@ export const speakerScreen = createStackNavigator(
     Speaker: SpeakerScreen
   },
   {
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: () => ({
       headerStyle: {
         backgroundColor: 'black',
         borderBottomColor: 'black'
@@ -84,30 +80,28 @@ const faveStack = createStackNavigator(
 
 aboutStack.navigationOptions = {
   drawerIcon: ({ tintColor }) => (
-    <Ionicons name={'md-information-circle'} size={25} color={tintColor} />
+    <Ionicons name="md-information-circle" size={25} color={tintColor} />
   )
 };
 faveStack.navigationOptions = {
   drawerIcon: ({ tintColor }) => (
-    <Ionicons name={'md-heart'} size={25} color={tintColor} />
+    <Ionicons name="md-heart" size={25} color={tintColor} />
   )
 };
 homeStack.navigationOptions = {
   drawerIcon: ({ tintColor }) => (
-    <Ionicons name={'md-calendar'} size={25} color={tintColor} />
+    <Ionicons name="md-calendar" size={25} color={tintColor} />
   )
 };
 mapStack.navigationOptions = {
   drawerIcon: ({ tintColor }) => (
-    <Ionicons name={'md-map'} size={25} color={tintColor} />
+    <Ionicons name="md-map" size={25} color={tintColor} />
   )
 };
 
-export default createDrawerNavigator(
-  {
-    Schedule: homeStack,
-    Map: mapStack,
-    Faves: faveStack,
-    About: aboutStack
-  }
-);
+export default createDrawerNavigator({
+  Schedule: homeStack,
+  Map: mapStack,
+  Faves: faveStack,
+  About: aboutStack
+});

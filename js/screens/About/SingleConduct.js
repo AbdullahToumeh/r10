@@ -10,7 +10,6 @@ class SingleConduct extends Component {
     this.description = React.createRef();
     this.state = {
       isVisible: false,
-      currentIndex: -1,
       animatedHeight: new Animated.Value(),
       minHeight: 0,
       maxHeight: 0
@@ -23,14 +22,14 @@ class SingleConduct extends Component {
   }
 
   measureComponents() {
-    this.title.current.measure((ox, oy, width, height, px, py) => {
+    this.title.current.measure((ox, oy, width, height) => {
       if (height > this.state.minHeight) {
         this.state.animatedHeight.setValue(height + 10);
         this.setState({ minHeight: height + 10 });
       }
     });
 
-    this.description.current.measure((ox, oy, width, height, px, py) => {
+    this.description.current.measure((ox, oy, width, height) => {
       if (height > this.state.minHeight) {
         this.setState({ maxHeight: height });
       }
@@ -40,26 +39,23 @@ class SingleConduct extends Component {
   // a lot of this animation code was inspired from:
   // https://moduscreate.com/blog/expanding-and-collapsing-elements-using-animations-in-react-native/
 
-  toggle(index) {
-    //Step 1 - set inital and final height values based on if component is currently visible
-    let initialValue = this.state.isVisible
-      ? this.state.maxHeight + this.state.minHeight
-      : this.state.minHeight;
-    let finalValue = this.state.isVisible
+  toggle() {
+    // Step 1 - set inital and final height values based on if component is currently visible
+    const finalValue = this.state.isVisible
       ? this.state.minHeight
       : this.state.maxHeight + this.state.minHeight;
 
     this.setState({
-      isVisible: !this.state.isVisible //Step 2 - switch components visibility
+      isVisible: !this.state.isVisible // Step 2 - switch components visibility
     });
 
     Animated.spring(
-      //Step 3 - use the spring animation on animtedHeight in state, and move it to the final height value (either closed or open)
+      // Step 3 - use the spring animation on animtedHeight in state, and move it to the final height value (either closed or open)
       this.state.animatedHeight,
       {
         toValue: finalValue
       }
-    ).start(); //Step 4 - start the animation!
+    ).start(); // Step 4 - start the animation!
   }
 
   render() {
@@ -97,6 +93,6 @@ SingleConduct.propTypes = {
   index: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired
-}
+};
 
 export default SingleConduct;

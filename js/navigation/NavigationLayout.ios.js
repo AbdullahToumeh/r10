@@ -1,7 +1,6 @@
 import {
   createStackNavigator,
-  createBottomTabNavigator,
-  createDrawerNavigator
+  createBottomTabNavigator
 } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React from 'react';
@@ -58,7 +57,7 @@ export const speakerScreen = createStackNavigator(
     Speaker: SpeakerScreen
   },
   {
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: () => ({
       headerStyle: {
         backgroundColor: 'black',
         borderBottomColor: 'black'

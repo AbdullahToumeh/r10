@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Text, ScrollView, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/Ionicons';
 import PropTypes from 'prop-types';
 import Moment from 'moment';
 import { connect } from 'react-redux';
 import { createTheFave, deleteTheFave } from '../../redux/modules/faves';
-import Icon from 'react-native-vector-icons/Ionicons';
 import colourStyles from '../../config/styles';
 
 
@@ -25,7 +25,7 @@ class SessionContainer extends Component {
     const isFav = Array.from(this.props.faves).find(fave => fave.id === id);
     return (
       <ScrollView style={styles.session}>
-        {isFav && <Icon name={'md-heart'} size={15} color={colourStyles.red} style={styles.heart} />}
+        {isFav && <Icon name="md-heart" size={15} color={colourStyles.red} style={styles.heart} />}
         <Text style={styles.location}>{location}</Text>
         <Text style={styles.event}>{title}</Text>
         <Text style={styles.time}>{Moment(time).format('h:mm A')}</Text>
@@ -81,9 +81,10 @@ class SessionContainer extends Component {
 }
 
 SessionContainer.propTypes = {
-  navigation: PropTypes.object.isRequired,
-  faves: PropTypes.object.isRequired
-}
+  navigation: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.object, PropTypes.func])).isRequired,
+  faves: PropTypes.objectOf(PropTypes.object).isRequired,
+  dispatch: PropTypes.func.isRequired
+};
 
 export default connect(state => ({
   faves: state.faveData.faves

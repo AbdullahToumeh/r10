@@ -3,12 +3,11 @@ import { View, Text, SectionList } from 'react-native';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import realm from '../../config/models';
 import { connect } from 'react-redux';
+import Moment from 'moment';
 import { formatSessionData, compareFaves } from '../../lib/functions';
 import LoadingWheel from '../../components/LoadingWheel';
 import ScheduleList from '../../components/ScheduleList';
-import Moment from 'moment';
 
 import styles from './styles';
 
@@ -32,9 +31,7 @@ const sessionQuery = gql`
 `;
 
 class FavesContainer extends Component {
-
   render() {
-    const favesArray = Array.from(this.props.faves);
     return (
       <Query query={sessionQuery}>
         {({ loading, error, data }) => {
@@ -75,9 +72,9 @@ class FavesContainer extends Component {
 }
 
 FavesContainer.propTypes = {
-  faves: PropTypes.object.isRequired,
-  navigation: PropTypes.object.isRequired
-}
+  faves: PropTypes.objectOf(PropTypes.object).isRequired,
+  navigation: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])).isRequired
+};
 
 export default connect(state => ({
   faves: state.faveData.faves

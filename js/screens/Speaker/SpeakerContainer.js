@@ -9,13 +9,15 @@ import styles from './styles';
 
 class SpeakerContainer extends Component {
   render() {
-    const { name, bio, image, url } = this.props.navigation.state.params;
+    const {
+      name, bio, image, url
+    } = this.props.navigation.state.params;
     return (
       <View style={styles.background}>
         <Icon
-          name={'md-close'}
+          name="md-close'"
           size={30}
-          color={'white'}
+          color="white"
           style={styles.close}
           onPress={() => this.props.navigation.pop()}
         />
@@ -39,7 +41,7 @@ class SpeakerContainer extends Component {
 }
 
 SpeakerContainer.propTypes = {
-  navigation: PropTypes.object.isRequired
-}
+  navigation: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.object, PropTypes.func])).isRequired
+};
 
 export default SpeakerContainer;

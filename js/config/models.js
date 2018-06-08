@@ -15,7 +15,7 @@ export default realm;
 
 export const addFave = id => {
   realm.write(() => {
-    realm.create('Faves', { id: id, faved_on: new Date() });
+    realm.create('Faves', { id, faved_on: new Date() });
   });
 };
 
@@ -26,6 +26,4 @@ export const removeFave = id => {
   });
 };
 
-export const getAllFaves = () => {
-  return realm.objects('Faves');
-};
+export const getAllFaves = () => realm.objects('Faves');
